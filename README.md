@@ -3,7 +3,14 @@
 [![DeepLearning.AI](https://img.shields.io/badge/DeepLearning.AI-Course-blue)](https://www.deeplearning.ai/)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-purple)](https://claude.ai/code)
 
-Comprehensive course materials from DeepLearning.AI's official course on Claude Code, taught by **Andrew Ng** and **Elie Schoppik** from Anthropic.
+学习笔记整理自 DeepLearning.AI 官方课程 "Claude Code: A Highly Agentic Coding Assistant"，由 **Andrew Ng** 和 Anthropic 的 **Elie Schoppik** 主讲。
+
+## 📚 学习来源
+
+- **原始课程**: [Claude Code: A Highly Agentic Coding Assistant](https://www.deeplearning.ai/short-courses/claude-code-a-highly-agentic-coding-assistant)
+- **课程平台**: DeepLearning.AI Short Courses
+- **主讲人**: Andrew Ng (吴恩达) & Elie Schoppik (Anthropic)
+- **内容性质**: 个人学习笔记整理与分享
 
 ## 🎯 What You'll Learn
 
@@ -84,9 +91,11 @@ Convert UI mockups into functional applications:
 - GitHub integration patterns
 - MCP server extensions
 
-## 📄 License
+## ⚖️ 版权声明
 
-Educational materials provided for learning purposes. Please refer to DeepLearning.AI's terms of use.
+- 原始课程内容版权归 DeepLearning.AI 所有
+- 本仓库为个人学习笔记整理，仅供学习交流使用
+- 如需官方课程内容，请访问 [DeepLearning.AI 课程页面](https://www.deeplearning.ai/short-courses/claude-code-a-highly-agentic-coding-assistant)
 
 ## 🤝 Contributing
 
