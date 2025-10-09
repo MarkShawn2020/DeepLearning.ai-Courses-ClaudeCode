@@ -1,0 +1,1 @@
+../sc-claude-code-files/links_to_course_repos.md

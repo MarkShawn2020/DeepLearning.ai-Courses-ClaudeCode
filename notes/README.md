@@ -1,0 +1,1 @@
+../sc-claude-code-files/README.md

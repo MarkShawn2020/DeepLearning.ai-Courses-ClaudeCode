@@ -1,0 +1,629 @@
+---
+title: Claude Code A Highly Agentic Coding Assistant  DeepLearning.AI
+slug: claude-code-a-highly-agentic-coding-assistant-deep-1755232941815
+source: https://learn.deeplearning.ai/courses/claude-code-a-highly-agentic-coding-assistant/lesson/kkth2/setup-&-codebase-understanding
+datetime: 2025-08-15T04:42:21.815Z
+---
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/3f10253cef402b2761ce4ab6e9213def.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+0:02 The first example we'll work on is an end-to-end RAG chatbot.
+
+0:06 Let's use Claude Code to explore the code base.
+
+0:09 Before we start using Claude Code
+
+0:11 to write lots of code for us,
+
+0:13 let's talk about how we can use this tool
+
+0:16 to get up to speed on larger code bases.
+
+0:19 Right here, I have an application where I can chat with Claude
+
+0:23 about course materials from Deep Learning AI.
+
+0:26 So let's try asking an outline of a course. For example, what
+
+0:29 is the outline of the MCP Build Rich-Context AI Apps with Anthropic.
+
+0:34 We'll see here that I'll get a
+
+0:36 response with quite a bit of detail
+
+0:38 around the lessons and descriptions for each of those lessons.
+
+0:41 With that in mind, let's see how we can get
+
+0:44 up to speed on the underlying code that powers this application.
+
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/a01b05332b38ecf14e851eea32af4db1.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+0:48 Back in VS Code, I have
+
+0:49 the terminal open here and I'm going
+
+0:51 to hop into Claude Code just
+
+0:53 by typing in claude and pressing enter.
+
+0:55 In this application, I can start chatting with my codebase.
+
+0:58 So I'm going to start with a high-level question just to
+
+1:01 give me an overview of the codebase.
+
+1:04 What we're going to see Claude Code do is agentically search
+
+1:07 over the codebase, figure out some of the most important files
+
+1:12 and give me a description of what's happening in this application.
+
+1:15 Instead of searching through each individual file,
+
+1:18 we're going to agentically search and find the most relevant ones.
+
+1:21 So here we're going to get some information about
+
+1:24 the architecture, the key components, some of the features,
+
+1:28 and now if there are particular
+
+1:30 things I want to dig into, I can easily do that.
+
+1:33 I can also ask other higher level questions like how
+
+1:36 are these documents processed?
+
+1:38 In this application, we're using Retrieval Augmented Generation
+
+1:42 to fetch information about these courses.
+
+1:45 If I want to get more information about that process,
+
+1:48 I can ask a question like this one.
+
+1:50 We like to say that Claude Code is a fantastic
+
+1:52 engineer alongside you,
+
+1:54 but it's an even better explainer.
+
+1:56 So as you're getting up to speed with new codebases,
+
+1:59 new data sets. First, start using Claude Code
+
+2:02 as a way to explain things to you,
+
+2:04 so that when you ask it to write code,
+
+2:06 you can have a better understanding of what's going on.
+
+2:09 Here we can see the sources in the
+
+2:12 code base that are actually splitting text into chunks,
+
+2:15 that are adding lesson context and that are storing course metadata.
+
+2:18 This ability to quickly get up to speed with a code base,
+
+2:22 especially when you might not be
+
+2:24 familiar with the underlying technology or language,
+
+2:27 is exceptionally valuable. Instead of
+
+2:29 navigating to each of these folders and figuring out what's going on,
+
+2:34 we can ask more specific questions and even get diagrams
+
+2:38 and visualizations made for us.
+
+2:41 So the first thing I'll ask Claude
+
+2:43 is to trace the process of handling a user's query
+
+2:47 from front end to back end.
+
+2:50 You can imagine you might have some limited knowledge
+
+2:53 in one of the parts of the stack or
+
+2:55 you're not familiar with how this is all happening.
+
+2:58 So Claude Code is going to
+
+2:59 give us quite some useful information here.
+
+3:02 What's useful when you're seeing Claude Code work
+
+3:04 is its ability to give you a bit of a to-do list,
+
+3:07 so you can start to understand
+
+3:09 what's happening. At any point in time,
+
+3:12 you can press escape and guide Claude Code
+
+3:15 to follow a different set of to-dos,
+
+3:17 but in this case, I feel pretty good about what it's doing.
+
+3:20 It's going to start tracing from the frontend, start following API endpoints,
+
+3:24 analyze our Retrieval Augmented Generation system,
+
+3:28 and then figure out how to actually generate the response.
+
+3:31 It's reading the appropriate files that are handling these particular tasks
+
+3:36 and finishing up its list to give us a powerful summary.
+
+3:39 As we're in this environment,
+
+3:41 we can stay within VS Code or open
+
+3:43 up Claude Code in its own dedicated terminal instance.
+
+3:47 That's completely up to you as you're working in this application.
+
+3:50 Once it's done, we can see a
+
+3:52 very detailed path for what's happening here.
+
+3:55 Not only can I read each of these step-by-step,
+
+3:58 I can even ask Claude to write this to a file,
+
+4:00 but I'm seeing in quite a bit
+
+4:02 of detail what's happening on the front end
+
+4:04 with some JavaScript, what happens once that reaches my back end,
+
+4:07 what the Retrieval Augmented Generation system is doing,
+
+4:11 how I'm generating a response. Finally,
+
+4:14 how I'm searching through my vector database,
+
+4:16 how I'm filtering what's necessary, getting a response back,
+
+4:20 and then finally, sending that to the user.
+
+4:23 There's a lot that's going on in this application.
+
+4:25 And I can use Claude to
+
+4:26 dive deeper into any of those pieces.
+
+4:29 But let's just say I learn best from visualizations.
+
+4:32 So let's ask Claude to draw a diagram
+
+4:34 that illustrates this flow.
+
+4:37 We can ask Claude to draw diagrams
+
+4:39 for web visualizations. We can ask for ASCII art.
+
+4:43 But let's see what Claude comes up with
+
+4:44 with its own intelligence and knowledge of how the application works.
+
+4:49 So let's see what Claude code has come up with.
+
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/cae8cff7765bfae3a8fe08431fa41500.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+4:51 We've got a really nice diagram here
+
+4:53 showing us the step-by-step process.
+
+4:55 So it can't create these visual diagrams.
+
+4:58 We could always ask it to use some something like D3.js
+
+5:01 or recharts if we want something like a web application.
+
+5:05 But we can see right here, we've got a really nice diagram.
+
+5:08 From the front end, making a request to the back end,
+
+5:11 calling the necessary functions,
+
+5:13 generating the response necessary if there's any history involved,
+
+5:18 talking directly to the large language model
+
+5:21 with our system prompts and our tools and a query,
+
+5:23 figuring out where to go next,
+
+5:25 searching through our vector database using Chroma DB, getting back results
+
+5:29 formatting that, sending it to the model to produce a final response.
+
+5:34 There's quite a bit of detail that goes into this.
+
+5:37 And if we want, we can even augment Claude with additional tools
+
+5:41 for generating the visualizations that we want.
+
+5:44 But out of the box, just getting this information quickly and efficiently
+
+5:48 is going to help us get up to speed with this
+
+5:50 codebase in a fraction of time that we used to spend.
+
+5:54 So with that in mind, let's ask a
+
+5:56 very simple question, how do I run
+
+5:58 this application? You might be in a situation
+
+6:00 where there's a new technology here, a new idea.
+
+6:03 Very simply, it's nice to just
+
+6:05 know how to get up and running.
+
+6:07 I can see here, my API documentation,
+
+6:09 my web interface, and if there are any environment variables I need,
+
+6:13 I'm good to go. Now that you've gotten an idea
+
+6:16 of how to just start talking to Claude Code.
+
+6:18 Let's talk a little bit about some of the more powerful features
+
+6:20 with Claude Code.
+
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/8eedb456897c86c0d495eeb74d8f9840.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+6:22 When you start working with an application in Claude Code,
+
+6:25 one of the first things we
+
+6:26 recommend you do is run a command
+
+6:28 called /init.
+
+6:29 You can see here in Claude Code, when I add this slash,
+
+6:33 we have a list of many built-in commands that I can use.
+
+6:36 /init allows me to initialize
+
+6:38 a CLAUDE.md file with the codebase documentation.
+
+6:42 The CLAUDE.md file is mission critical
+
+6:45 for introducing memory for Claude Code,
+
+6:48 so that it knows how best to work in your codebase.
+
+6:52 The CLAUDE.md file is very useful
+
+6:54 for specifying how you want things to be run.
+
+6:57 This could be your tests, this could be your linting,
+
+6:59 and any long-term memory that you want Claude to have
+
+7:03 each time you're working with Claude Code for this particular project.
+
+7:07 Instead of making this from scratch, /init
+
+7:09 is going to analyze the codebase
+
+7:11 to figure out at a high level what it should know about
+
+7:14 each time you're working with this application.
+
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/477dd8badd916acb936208a2d1bdfa04.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+7:18 There are three different CLAUDE.md files that you can make,
+
+7:21 like the one generated with /init
+
+7:23 all the way here on the left.
+
+7:26 This CLAUDE.md file lives in your application. You can
+
+7:29 have many of them in nested sub folders.
+
+7:32 But this is shared with other
+
+7:34 engineers and committed to your version control.
+
+7:37 Another option is if you have personal instructions
+
+7:39 and customizations, think specific for your editing environment
+
+7:42 and terminal environment, you can put that in a CLAUDE.local.md file.
+
+7:49 This is git ignored and not shared with other engineers.
+
+7:53 Finally, in your home directory, in the
+
+7:55 .claude folder, you can add a CLAUDE.md
+
+7:57 and you can think of this like a
+
+7:59 global claude.md for all projects on your machine.
+
+8:03 This is helpful if you want Claude to follow instructions across
+
+8:07 a wide range of projects that you build with Claude Code.
+
+8:17 We can go ahead and allow Claude Code to find different
+
+8:20 files so that it knows how best to create this CLAUDE.md file.
+
+8:24 This CLAUDE.md file is meant to be
+
+8:26 added to your current git project and
+
+8:29 shared with other team members.
+
+8:31 As more individuals work on the codebase,
+
+8:34 they can add to this CLAUDE.md file,
+
+8:36 and you can even nest CLAUDE.md files
+
+8:39 in subdirectories if you need
+
+8:41 more specific instructions for things like the backend
+
+8:44 or frontend or our docs that we have here.
+
+8:46 What's really nice about using a tool
+
+8:49 like Claude Code with Visual Studio Code,
+
+8:51 is that as I see changes to files,
+
+8:54 I can see those visually in my editor.
+
+8:56 And anytime that I am using a tool in Claude Code,
+
+9:00 it's going to ask me for permissions.
+
+9:02 This mission critical human in the loop is really important
+
+9:05 when you get up and running,
+
+9:07 and if you don't need Claude to ask you every single time,
+
+9:10 can always use this second option. We'll
+
+9:12 go ahead and auto accept those edits
+
+9:14 and we'll see that a CLAUDE.md file has been created for us.
+
+9:18 To give you a quick walk through,
+
+9:21 we can see it's given us a
+
+9:23 project overview, key technologies, an architectural overview,
+
+9:26 a nice little diagram here, some core components.
+
+9:29 and much more. If we want things to change
+
+9:32 to this particular CLAUDE.md, we can easily do so.
+
+9:35 As it continues searching the codebase,
+
+9:37 it makes additional edits here to my CLAUDE.md
+
+9:40 and gives me a summary of what's been done.
+
+9:43 When I'm using a tool like Claude Code in VS Code,
+
+9:46 I have the ability to specify which
+
+9:48 file I'm in and even get information
+
+9:49 about particular lines.
+
+9:52 To set this up, I'm going to use the /ide command.
+
+9:55 and I can see right here
+
+9:57 that I'm connected with Visual Studio Code.
+
+9:58 Now that I'm in Visual Studio Code, we can see right here
+
+10:01 that the second that I visit a file,
+
+10:04 it's tagged right here for what's going on.
+
+10:06 This gives Claude Code the right context
+
+10:08 for which file I'm in and if there are questions
+
+10:11 I have about that file, it makes it easier
+
+10:13 for Claude Code to identify that.
+
+10:15 If I ever want to make any changes
+
+10:17 to my CLAUDE.md file, I can manually write that if I'd like.
+
+10:20 Or I can use a handy command
+
+10:22 to go ahead and use this pound key
+
+10:24 and directly add to memory.
+
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/cb844bd97a22237684601bb089d2e0f7.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+10:26 So I'm just going to say here, always use UV.
+
+10:29 to run the server, do not use pip directly.
+
+10:32 This is a package manager in the Python ecosystem
+
+10:35 and I want to make sure that Claude doesn't get confused.
+
+10:37 When I use this shortcut, we can see there are different places
+
+10:41 where this memory can be saved.
+
+10:42 We mentioned there is the Project memory
+
+10:45 that is included in git for everyone on your team to use.
+
+10:48 We have local memory that is gitignored
+
+10:51 but just useful for you as the developer.
+
+10:53 and then User memory that is applicable
+
+10:56 to all projects you use with Claude Code.
+
+10:59 For this one, I'll just go ahead and update the project memory.
+
+11:02 I can see here, I've made that change.
+
+11:04 And if I look in my CLAUDE.md, I'll see right here,
+
+11:07 I have some mentions to using UV
+
+11:10 to make sure that I'm doing that correctly.
+
+11:12 If I want to be more specific, I can also say,
+
+11:15 make sure to use UV to manage all dependencies.
+
+11:19 I'll add this to my CLAUDE.md and
+
+11:21 we'll see right here that it's been added.
+
+11:23 If I take a quick look at this particular file,
+
+11:26 we can see any mention of dependencies now includes UV.
+
+11:39 We spoke a little bit about some of the commands
+
+11:41 that are built into Claude Code like /emit.
+
+11:45 There are a couple other useful
+
+11:46 ones that I want to showcase here.
+
+11:48 And in fact, we're going to see later on
+
+11:50 in this course, we can even make our own.
+
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/0d991854417bd195143f3bfb99ec51fa.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+11:52 One of the first ones I
+
+11:53 want to walk you through is /help.
+
+11:54 This shows me right off the bat a quick description
+
+11:58 of all the commands. and a quick summary.
+
+12:00 This is useful as you're getting up to speed with Claude code.
+
+12:04 The next one I want to showcase is a command called /clear.
+
+12:07 What this allows you to do is
+
+12:10 clear the conversation history and start from scratch.
+
+12:13 This is very helpful as you shift gears and build new features.
+
+12:17 This allows you to clear the context window and start fresh.
+
+12:20 If you want to continue the conversation,
+
+12:23 have a smaller context window, but still
+
+12:25 have a summary of what's been done,
+
+12:28 we also have this command /compact
+
+12:30 that allows you to clear the history, but keep a summary
+
+12:33 so that you can build off with Claude having an idea
+
+12:36 of what was done before.
+
+12:38 One more useful command is the escape key that allows you
+
+12:41 to get out of whatever command you're in.
+
+12:43 So if I'm going and trying to do something like /compact
+
+12:47 and I want to stop that process, I can always press escape.
+
+12:50 If I start a process with Claude Code
+
+12:52 to explain what is in the codebase.
+
+12:55 If I want to stop that process, escape
+
+12:57 will allow me to interrupt and continue, onwards.
+
+13:00 So don't feel like you have to wait for
+
+13:02 Claude Code if you're not getting what you need.
+
+13:04 In the next lesson, we'll start using Claude Code to build features,
+
+13:08 add to files, modify changes, and make sure
+
+13:11 we're doing the right thing along the way.
+
+13:14 Before we hop off, one last useful piece with
+
+13:16 Claude Code is its ability to work with Git.
+
+13:18 So I've made some small changes to this application,
+
+13:21 and I want to add and commit these changes.
+
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/24f34ca01270631a68c8b6009c886bb7.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+13:24 Instead of me manually have to write
+
+13:26 the Git commands, write a descriptive commit message,
+
+13:29 going to actually have Claude Code do that work for us.
+
+13:32 And what's really nice is Claude Code's ability to add
+
+13:35 and commit the necessary commands.
+
+13:37 I'll go ahead and add this particular file,
+
+13:39 not only commit, but you can see here,
+
+13:42 I've got this really nice descriptive commit message.
+
+13:44 That's incredibly useful as we start asking Claude Code
+
+13:47 about historical changes with git.
+
+13:49 and when we push this to GitHub and
+
+13:51 other people are reading the changes
+
+13:53 we made. So we'll add and commit
+
+13:54 and the next lesson, we'll use Claude Code
+
+13:57 to start writing lots of things for us.

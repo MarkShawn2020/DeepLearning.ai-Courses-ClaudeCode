@@ -1,0 +1,631 @@
+---
+title: Claude Code A Highly Agentic Coding Assistant  DeepLearning.AI
+slug: claude-code-a-highly-agentic-coding-assistant-deep-1755233031183
+source: https://learn.deeplearning.ai/courses/claude-code-a-highly-agentic-coding-assistant/lesson/33kzc/testing,-error-debugging-and-code-refactoring
+datetime: 2025-08-15T04:43:51.183Z
+---
+
+
+0:00 The codebase is now missing tests
+
+0:02 for evaluating the RAG pipeline of the chatbot.
+
+0:06 Let's implement these tests and use them to debug an error
+
+0:09 that the chatbot is having processing the queries, and finally, refactor
+
+0:14 how the chatbot handles its tool use. Let's dive in.
+
+0:18 So far we've seen how to get up to speed with codebases
+
+0:21 and implement features to build a slightly more powerful experience.
+
+0:26 Now let's go ahead and imagine that it's
+
+0:28 been some time since we've worked on this
+
+0:29 application. We're coming back and we want to start using it again.
+
+0:32 So let's hop back to our application
+
+0:34 and ask for some details on what's covered in Lesson 5.
+
+0:38 We might expect to see a response
+
+0:40 that gives us information, but right now, something's wrong.
+
+![教程截图：前端报错](https://poketto.oss-cn-hangzhou.aliyuncs.com/f1d06b1e2c5d07c96f60ef1eb45fd0ab.jpg?x-oss-process=image/quality,q_90/rotate,0)
+
+
+0:43 It might be tempting to just
+
+0:45 copy this error, put it into Claude,
+
+0:46 take a screenshot, hope it solves the problem.
+
+0:48 But we're going to do something a little bit different.
+
+0:51 Instead of just getting the answer that we might want
+
+0:54 or leading Claude on some wild goose chase.
+
+0:58 We're going to take a bit more of a methodical approach here.
+
+1:00 We know that things are wrong in our application,
+
+1:02 but we also know that we don't have too many tests here
+
+1:05 to programmatically verify that that's the case.
+
+1:09 So what we're going to do is put in a prompt
+
+1:11 that not only mentions what the error is,
+
+1:13 but also specifies where we need to write tests.
+
+1:17 If we go back to our code base,
+
+1:19 the error we're looking at could be
+
+1:21 from a variety of different Python files.
+
+1:24 In our AIGenerator, this is where we handle interactions with Anthropic's API.
+
+1:28 And there could be problems in the prompt
+
+1:31 or even some of the logic
+
+1:32 we have for getting this part working.
+
+1:35 In our rag\_system.py,
+
+1:36 this is the orchestrator for everything that's happening with Retrieval Augmented Generation.
+
+1:42 And in our search\_tools, here's where we define the underlying tool
+
+1:46 definition where there could potentially be problems.
+
+1:49 So what we're going to ask Claude to do
+
+1:51 is write tests for these specific files just to start.
+
+1:54 We're then going to ask Claude to run those tests
+
+1:56 and through that, verify what is not working and make
+
+1:59 the appropriate fix. What's so powerful about this approach
+
+2:03 is by starting with our tests, we
+
+2:05 can start to build a robust foundation
+
+2:07 for building more off of the codebase
+
+2:09 and understanding when things go wrong, why they're failing.
+
+2:12 So let's open up Claude and put in a prompt.
+
+2:15 Since this is a little bit more challenging,
+
+2:18 we're also going to ask Claude to think a lot.
+
+2:22 This is going to trigger Claude's ability
+
+2:24 to enable extended thinking
+
+2:26 and allocate a few more tokens
+
+2:28 towards the thinking process. we're also going to see this process
+
+2:32 and if something doesn't appear right, we
+
+2:33 can always stop Claude in its tracks.
+
+2:35 We'll go ahead and make sure the plan mode is on
+
+2:38 because first we want to make sure before Claude starts writing tests,
+
+2:41 it understands what it needs to
+
+2:43 do and we can approve that process.
+
+![教程截图：think a lot + plan mode](https://poketto.oss-cn-hangzhou.aliyuncs.com/1a43166760222a03688f6ad9df3567f6.jpg?x-oss-process=image/quality,q_90/rotate,0)
+
+
+2:45 As we start to read the files necessary,
+
+2:47 we're going to see Claude's thinking process.
+
+2:49 We're not only going to see the files that we're reading,
+
+2:52 but also what it needs to examine and what it should do.
+
+2:57 So let's go see what Claude's plan has. It's
+
+2:59 It seems like there's some kind of configuration issue,
+
+3:02 maybe some complex tool calling with failure points
+
+3:05 and some limited error propagation between components.
+
+3:09 So it's possible that the error is just getting caught somewhere.
+
+3:12 It's then going to propose a structure for tests
+
+3:14 based on these files, which looks good to us.
+
+3:18 use the pytest framework and mock whatever
+
+3:19 it is in ChromaDB that we need
+
+3:21 to get some unit tests and integration tests up and running.
+
+3:26 You can see right now it's starting to make
+
+3:28 a folder for my tests, where it'll be running.
+
+3:29 writing these. It's a great start.
+
+3:32 We'll go ahead and make sure we add
+
+3:34 any necessary dependencies here as well with UV.
+
+3:38 Let's go install our dependencies,
+
+3:40 make sure we have pytest working as expected, and that looks good.
+
+3:42 We're also going to see the thinking part
+
+3:44 here to make sure that we're doing what's expected.
+
+3:46 As we start to write these particular tests,
+
+3:48 we can start exploring the code that's been written for us.
+
+3:51 Here we can see tests for the course search tool,
+
+3:54 fixtures and mocks that we need to make.
+
+3:56 This looks like a good start. We'll
+
+3:58 see the same thing for our AI generator.
+
+3:59 and our RAG system and our vector store.
+
+4:02 It seems like it's identified a critical
+
+4:03 config issue which may solve the bug,
+
+4:06 but writing these tests is going to give us complete assurance
+
+4:08 that this is actually the problem
+
+4:10 and that this is the correct fix.
+
+4:20 Now that we've created these tests, let's run them using UV.
+
+4:23 Let's go make sure we have the correct dependencies
+
+4:25 so that we can run those tests as expected.
+
+4:27 So from its finding, it's telling us that it's
+
+4:29 seems like there's something wrong with these max results
+
+4:33 or the number of chunks that were
+
+4:34 returning when we perform our vector search. So let's see
+
+4:38 what we're getting when we take a look at our MAX\_RESULTS.
+
+4:40 And this confirms the issue that we have.
+
+4:42 For some reason, this happens to be zero.
+
+4:44 Once we go ahead and change this, we should expect
+
+4:46 that not only our tests are working as expected,
+
+4:49 but that the results we get are complete.
+
+4:51 We can verify this by taking a look and
+
+4:53 making sure we get the file that we expect.
+
+4:55 Now that Claude Code is wrapping up,
+
+4:57 it can provide a comprehensive summary of its
+
+4:59 findings, which I can wait to
+
+5:01 see or if I feel good now,
+
+5:02 I can stop Claude in its tracks.
+
+5:05 But I'll take a look at what
+
+5:06 it gives me. It's completed its debugging.
+
+5:08 It's found the critical issue, and it's created a few tests,
+
+5:11 as well as some infrastructure to
+
+5:12 keep running tests as we go forward.
+
+5:15 Let's go see if this worked as expected.
+
+5:16 Back in the browser, I'll start a new conversation,
+
+5:19 and let's ask that same question again and
+
+5:21 see if we get the result as expected.
+
+5:23 Instead of the query failing, we should expect to see information
+
+5:27 just about the lesson and that's exactly what we did.
+
+5:29 we have here. So not only have
+
+5:31 we fixed the bug, we built for ourselves
+
+5:32 a powerful infrastructure to keep running the application off
+
+5:34 of and make sure that as we make new changes,
+
+5:37 things are not breaking and we don't know why.
+
+![教程截图：前端表明bug已修复](https://poketto.oss-cn-hangzhou.aliyuncs.com/e3d59c54596502d458cb92d2f0965a6d.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+5:40 Now that we got this application working,
+
+5:42 let's talk about a little bit of a refactor
+
+5:44 that I'd like to make in the codebase.
+
+5:46 Let's clear and start again with a new feature.
+
+5:49 So here in our ai\_generator.py,
+
+5:51 we specify that we want one search per query maximum.
+
+5:55 While this leads to the expected behavior for relatively simple
+
+6:00 when we want to start doing more complex queries,
+
+6:02 comparing different courses, comparing their outlines,
+
+6:05 we're going to need more than one tool call.
+
+6:08 So what we're going to need is some kind of environment
+
+6:10 where we can either iteratively go through all the tools necessary
+
+6:14 or recursively solve that problem.
+
+6:17 If you're comfortable with this code and ecosystem,
+
+6:20 you can take a look at the class that we have here,
+
+6:22 which is a relatively simple way
+
+6:24 to talk directly to Anthropic models
+
+6:26 using our SDK, set your base\_params and
+
+6:29 generate a response. But you can see
+
+6:31 here, as we build our system prompt,
+
+6:33 as we figure out the messages necessary and any tools,
+
+6:37 there's no iteration and back and forth to accumulate
+
+6:40 our tools necessary and have a
+
+6:42 multi-turn conversation with multiple tools being used.
+
+6:46 So let's refactor that. I've got a pretty long prompt here,
+
+6:49 so I'm going to go ahead and make
+
+6:50 a new markdown file and let's go call this
+
+6:53 backend-tool-refactor.md
+
+6:56 In this file, I want to walk through the
+
+6:58 prompt that I have where I'm
+
+6:59 going to ask Ask Claude to refactor
+
+7:01 the backend ai\_generator.py
+
+7:03 to support two calls in separate rounds.
+
+7:06 The current behavior is what I'm describing
+
+7:08 as well as the desired behavior.
+
+7:10 While this might not be required,
+
+7:12 it's often helpful, as we've seen,
+
+7:15 to give Claude as much information as possible,
+
+7:17 especially when the tasks are a little bit more complex.
+
+7:20 We're also going to give Claude an example flow.
+
+7:23 Something like search for a course that
+
+7:25 discusses the same topic as another course.
+
+7:28 Just to give Claude a sense of what needs to be done.
+
+7:30 Notice here, there are a couple of different
+
+7:32 tools that need to be used as expected.
+
+7:34 We'll give Claude some requirements,
+
+7:36 and then a couple of notes as well
+
+7:38 to make sure we're doing the right thing.
+
+7:40 We're going to make sure that
+
+7:42 we write tests that verify external behavior
+
+7:44 instead of worrying about internal state details.
+
+7:47 Or we're also going to ask Claude to
+
+7:49 do is figure out a couple different plans.
+
+7:52 Don't implement any code,
+
+7:53 but **dispatch two subagents to brainstorm potential options**.
+
+![视频截图：炸裂！一句prompt让2个Agent头脑风暴！](https://poketto.oss-cn-hangzhou.aliyuncs.com/aa1d2d22cc73faa1bacd28f2fa43360d.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+7:58 In this situation, I'm not exactly sure what the optimal refactoring is.
+
+8:03 So instead of letting Claude Code decide just one
+
+8:05 option, I'm actually going to give it the opportunity
+
+8:07 to figure out multiple options in parallel.
+
+8:11 So let's use that particular prompt
+
+8:12 and I'll turn off auto accept to make sure
+
+8:15 that as I'm going through, I can
+
+8:16 confirm each of the changes that
+
+8:18 I want. So let's run that prompt.
+
+8:20 We should expect to see the two parallel subagents
+
+8:23 being dispatched using a tool called task.
+
+8:26 And as we see those agents dispatched,
+
+8:28 we'll start to see two plans
+
+8:30 for how we can solve this problem.
+
+8:32 It's then up to us to decide which one to implement.
+
+8:35 We can see that both of these are operating in parallel,
+
+8:38 reading across files and figuring out two different approaches for this refactor.
+
+![教程截图：两个agent在并行地执行任务](https://poketto.oss-cn-hangzhou.aliyuncs.com/0429fbd210ff84e787fac6ba98739af2.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+8:42 So it looks like it's come back with
+
+8:44 some recommendations for how best to tackle this.
+
+8:46 One approach is iterative, another more comprehensive.
+
+8:50 We can see here that Claude is actually going
+
+8:52 to give us an option to choose either option B
+
+8:55 for better long-term maintainability or option A for a safer implementation.
+
+8:59 scroll up more. If I scroll up more, I
+
+9:01 can get some details into what it's trying to do.
+
+9:04 One option supporting some iteration for handling tools,
+
+9:07 the other for a slightly more complicated implementation
+
+9:11 for multi-round logic with different helper methods for that process.
+
+![教程截图：两个Agent输出了各自的方案，供用户选择](https://poketto.oss-cn-hangzhou.aliyuncs.com/456034750af89b5585aa330b60dde1e9.png?x-oss-process=image/quality,q_90/rotate,0)
+
+
+9:15 From first glance, it seems like approach A is a bit simpler.
+
+9:18 So why don't we start with
+
+9:19 that? I'm going to select approach A,
+
+9:20 but I'm also now going to enable plan mode
+
+9:23 to make sure I have a comprehensive plan and
+
+9:26 can accept before making the changes that I want.
+
+9:29 Let's implement approach A.
+
+9:30 and get a more detailed plan to verify
+
+9:32 that this is exactly what we want to do.
+
+9:34 We know that there needs to be some modification
+
+9:36 in the way that which we call these tools,
+
+9:39 but let's make sure this is all being
+
+9:40 done in the right place before we go ahead
+
+9:42 and have Claude Code write the solution for us.
+
+9:45 Now let's take a look at what's being done here.
+
+9:47 We'll update our method signature for a maximum number of rounds,
+
+9:50 update our system prompt, and here where the
+
+9:53 core refactoring is done in our handle tool execution.
+
+9:56 If this is done as expected, we
+
+9:57 should see the user query, we should see
+
+9:59 multiple tools being called and then a final response.
+
+10:03 This shouldn't modify anything else and should solve the problem for us.
+
+10:07 We can see here that this is backwards compatible,
+
+10:10 and we're not changing the internal RAG system or any API endpoints.
+
+10:14 So let's proceed and see if
+
+10:16 this can solve our problem for us.
+
+10:17 As we see what's being implemented,
+
+10:20 we can see changes to existing methods,
+
+10:22 and most importantly, we can see here that
+
+10:25 we're updating the tests and running the tests
+
+10:27 to verify that the implementation works correctly.
+
+10:31 Instead of context switching to the browser
+
+10:33 or asking other people to test,
+
+10:35 I can do this all from inside the terminal
+
+10:37 in Claude Code.
+
+10:45 So we'll see here, we're going to update our system prompt,
+
+10:47 make sure that our tests are as expected.
+
+10:50 And then we'll add a test to make
+
+10:51 sure the sequential tool calling works as expected.
+
+10:54 Let's run our tests, make sure they're passing as expected.
+
+10:57 Let's verify in the browser, this is doing what
+
+10:59 if you want. Let's try asking first
+
+11:02 for a details of a course's lesson.
+
+11:06 So here we can see
+
+11:07 that not only are we getting this information,
+
+11:10 but also the title here as well, as expected.
+
+11:12 We're getting information about this lesson,
+
+11:14 as well as some of the sections and topics discussed.
+
+11:18 Now let's do something a little more complex.
+
+11:20 What's so special about seeing the title here is
+
+11:22 that we don't get that with just one tool call.
+
+11:25 The first tool call just gives us an outline of the course.
+
+11:29 The second tool call gives us that detail
+
+11:31 of the particular lesson and in our case the title.
+
+11:34 Now let's ask, Are there any other courses that cover
+
+11:37 the same topic as Lesson 5 of the MCP course?
+
+11:42 In order to do this, we're going
+
+11:44 to need to make multiple tool calls
+
+11:45 to get information about this particular MCP course
+
+11:48 and outline and then information about other courses and their outlines
+
+11:53 to see if there's any overlap.
+
+11:55 Unfortunately, it looks like there are no other courses
+
+11:58 that cover building an MCP client, which does seem accurate.
+
+12:01 In this lesson, we've seen how to use Claude Code to
+
+12:05 not only fix bugs, but write tests throughout the entire process.
+
+12:09 We built for ourselves a solid foundation to keep coding on
+
+12:12 and made a nice refactor to get more complicated query answers appropriately.
+
+12:17 In the next lesson, we'll improve our
+
+12:20 productivity by running multiple sessions of Claude Code
+
+12:23 and making sure we don't have overlaps or
+
+12:26 overwrites using Git worktrees. I'll see you there.
+
+## appendix
+### prompts
+
+![](https://poketto.oss-cn-hangzhou.aliyuncs.com/e08c886f09337c30812f97d036a1ef2a.png?x-oss-process=image/quality,q_90/rotate,0)
+
+```markdown
+Refactor @backend/ai_generator-py to support sequential tool calling where Claude can make up to 2 tool calls in separate API rounds.
+
+Current behavior:
+- Claude makes 1 tool call → tools are removed from API params → final response
+- If Claude wants another tool call after seeing results, it can't (gets empty response)
+
+Desired behavior:
+- Each tool call should be a separate API request where Claude can reason about previous results
+- Support for complex queries requiring multiple searches for comparisons, multi-part questions, or when information from different courses/lessons is needed
+
+Example flow:
+1. User: "Search for a course that discusses the same topic as lesson 4 of course X"
+2. Claude: get course outline for course X - gets title of lesson 4
+3. Claude: uses the title to search for a course that discusses the same topic → returns course information
+4. Claude: provides complete answer
+
+Requirements:
+- Maximum 2 sequential rounds per user query
+- Terminate when: (a) 2 rounds completed, (b) Claude's response has no tool_use blocks, or (c) tool call fails
+- Preserve conversation context between rounds
+- Handle tool execution errors gracefully
+
+Notes:
+- update the system prompt in @backend/ai_generator.py
+- update the test @backend/tests/test_ai_generator.py
+- Write tests that verify the external behavior (API calls made, tools executed, results returned) rather than internal state details.
+
+Use two parallel subagents to brainstorm possible plans. Do not implement any code.
+```
